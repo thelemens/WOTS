@@ -34,6 +34,7 @@ object TextFormatter {
     }
     if (!orders.isEmpty) {
       println(itr + 1 + ".  Order " + orders.head.oid)
+      println(orders.head.orderLine)
       printOrderList(orders.tail, itr + 1)
     }
   }

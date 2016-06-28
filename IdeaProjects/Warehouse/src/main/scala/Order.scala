@@ -4,16 +4,10 @@ import scala.collection.mutable.ArrayBuffer
 /**
   * Created by markk on 21/06/2016.
   */
-case class Order(oid : Int, eid : Int, cid : Int, var status : OrderStatus.Value, datePlaced: String, dateShipped: String) {
+case class Order(oid : Int, eid : Int, cid : Int, var status : OrderStatus.Value, datePlaced: String, dateShipped: String, var list: ArrayBuffer[OrderLineItem]) {
 
-  //  def add(orderLine: OrderLine): Unit = {
-  //    this.add(orderLine)
-  //
-  //}
-  var orderLine =  ArrayBuffer[OrderLineItem]()
-
-  def addOrderLineItem(item: OrderLineItem): Unit = {
-    orderLine += item
+    def addOrderLineItem(item: OrderLineItem): Unit = {
+    list += item
   }
 
   def updateStatus(newStatus: OrderStatus.Value): Unit = {
@@ -22,6 +16,7 @@ case class Order(oid : Int, eid : Int, cid : Int, var status : OrderStatus.Value
 
   Orders(this)
 }
+
 
 class Orders(val self: ArrayBuffer[Order]) extends Proxy {
   def ids = self map { _.oid }

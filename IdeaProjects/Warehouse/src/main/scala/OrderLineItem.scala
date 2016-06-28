@@ -6,9 +6,6 @@ import scala.collection.mutable.ArrayBuffer
 
 case class OrderLineItem(pid : Int, quantity: Int, requiresPorousware : Boolean) {
 
-
+  //Stuff in here
 }
 
-//case class OrderLine[OrderLineItem] extends ArrayBuffer[OrderLineItem]{
-//
-//}

@@ -6,7 +6,7 @@ object WarehouseUser {
   //view list of orders, view information of order
   def main(args: Array[String]) : Unit = {
 
-    doUI(genOrderList())
+    doUI(genOrders(), genProducts())
     //    val emps = DataDump.getEmployees()
     //    val ords = DataDump.getOrders();DataDump.getProducts();
     //    for (order <- ords) {
@@ -16,22 +16,18 @@ object WarehouseUser {
     //    }
   }
 
-  def genOrderList(): Orders = {
-    DataDump.getOrders()
-  }
-
-  def doUI(list: Orders): Unit = {
+  def doUI(list: Orders, products: Products): Unit = {
 
     println("\n----------------------------\n")
 
     var run: Boolean = true
     do {
-      println("\nEnter a command:\n1. View order list\n2. Edit Order Status\n9. Quit\n")
+      println("\nEnter a command:\n1. View Current Order list\n2. Edit Order Status\n9. Quit\n")
       val i = scala.io.StdIn.readInt()
       i match {
-        case 1 => TextFormatter.printOrderList(list, 0); doOrderUI(list)
+        case 1 => doOrderUI(list)
 
-        case 2 => doOrderStatusUI(list)
+        case 2 => processOrder(list)
 
         case 9 => run = false
 
@@ -42,7 +38,7 @@ object WarehouseUser {
     println("Exiting...")
   }
 
-  def doOrderStatusUI(list: Orders): Unit = {
+  def processOrder(list: Orders): Unit = {
 
     var run: Boolean = true
     do {
@@ -80,6 +76,8 @@ object WarehouseUser {
 
   def doOrderUI(list: Orders): Unit = {
 
+    TextFormatter.printOrderList(list, 0);
+
     var run: Boolean = true
     do {
       println("-----------\nChoose the number of an order for information, or [0] to return to Main Menu")
@@ -94,5 +92,13 @@ object WarehouseUser {
         println("Please choose a valid number!!")
       }
     } while(run)
+  }
+
+  def genOrders(): Orders = {
+    DataDump.getOrders()
+  }
+
+  def genProducts(): Products = {
+    DataDump.getProducts()
   }
 }
