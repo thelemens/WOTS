@@ -1,6 +1,14 @@
+import scala.collection.mutable.ArrayBuffer
+
 /**
-  * Created by Administrator on 28/06/2016.
+  * Created by markk on 21/06/2016.
   */
-class OrderLineItem {
+
+case class OrderLineItem(pid : Int, quantity: Int, requiresPorousware : Boolean) {
+
 
 }
+
+//case class OrderLine[OrderLineItem] extends ArrayBuffer[OrderLineItem]{
+//
+//}
